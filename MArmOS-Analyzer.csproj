@@ -12,7 +12,6 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <PlatformTarget>x64</PlatformTarget>
     <LangVersion>7.3</LangVersion>
-    
     <!-- may be different on your machine ... -->
     <SpaceEngineersInstallDir>C:\Program Files (x86)\Steam\steamapps\common\SpaceEngineers\Bin64\</SpaceEngineersInstallDir>
   </PropertyGroup>
@@ -33,6 +32,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AxisResolution.cs" />
+    <Compile Include="RenameLights.cs" />
+    <Compile Include="RenameRotors.cs" />
+    <Compile Include="RenameTopGrid.cs" />
     <Compile Include="Testing.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>

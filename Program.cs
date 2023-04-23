@@ -11,22 +11,6 @@ namespace IngameScript
 {
     internal partial class Program : MyGridProgram
     {
-// script to place inside programmable block is in between #if #endif
-
-
-// too lazy to create second project for utility script ...
-#if RENAME_SCRIPT
-
-// simple script, that will rename all rotor/hinge/piston sub grids to "[NAME_OF_ROTOR]`s Grid"
-public void Main(string argument) {
-    var blocks = new List<IMyMechanicalConnectionBlock>();
-    GridTerminalSystem.GetBlocksOfType(blocks, o => o is IMyPistonBase || o is IMyMotorStator);
-    foreach (var block in blocks) {
-        block.TopGrid.CustomName = block.CustomName + "`s Grid";
-    }
-}
-
-#else
 
 // call this from ui with name of root rotor/hinge/piston block as argument ...
 public void Main(string argument) {
@@ -192,7 +176,7 @@ string BlockConfiguration(string type, string name, string axis, double home) {
     return ret + ");";
 }
 
-#endif
+
 
 
     }
