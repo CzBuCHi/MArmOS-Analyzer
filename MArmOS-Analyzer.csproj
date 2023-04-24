@@ -22,6 +22,9 @@
     <Reference Include="Sandbox.Common">
       <HintPath>$(SpaceEngineersInstallDir)\Sandbox.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Sandbox.Game">
+      <HintPath>..\..\Program Files (x86)\Steam\steamapps\common\SpaceEngineers\Bin64\Sandbox.Game.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="VRage.Game">
@@ -32,10 +35,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlockResolution.cs" />
     <Compile Include="AxisResolution.cs" />
     <Compile Include="RenameLights.cs" />
     <Compile Include="RenameRotors.cs" />
-    <Compile Include="RenameTopGrid.cs" />
     <Compile Include="Testing.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>

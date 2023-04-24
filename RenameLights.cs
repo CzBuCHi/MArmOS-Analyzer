@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Linq;
 using Sandbox.ModAPI.Ingame;
 using VRage.Game.ModAPI.Ingame;
 
@@ -23,19 +25,13 @@ void TryMain() {
     var lights = new List<IMyLightingBlock>();
     GridTerminalSystem.GetBlocksOfType(lights);
 
-    var gridsByBlock = new Dictionary<IMyCubeGrid, IMyMechanicalConnectionBlock>();
-    foreach (var block in blocks) {
-        if (gridsByBlock.ContainsKey(block.CubeGrid)) {
-            throw new Exception("Duplicate: " + block.CubeGrid.CustomName);
-        }
-
-        gridsByBlock[block.CubeGrid] = block;
-    }
-
     foreach (var light in lights) {
-        IMyMechanicalConnectionBlock block;
-        if (gridsByBlock.TryGetValue(light.CubeGrid, out block)) {
-            light.CustomName = "Light: " + block.CustomName;
+
+        var block = blocks.FirstOrDefault(o => o.CubeGrid == light.CubeGrid && light.Position.RectangularDistance(o.Position) == 1);
+
+        if (block != null) {
+            light.CustomName = block.CustomName + "`s light";
+            light.ShowInTerminal = false;
         }
     }
 }
