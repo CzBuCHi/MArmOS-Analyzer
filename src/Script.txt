@@ -1,34 +1,10 @@
-﻿// Only code between these two markers is intended for the in-game programmable block.
-// This file is the real script source; the local .csproj is only a Visual Studio helper and is not pasted into the game.
-// Comments in this region are included in the final pasted script, so they can also serve as user instructions.
-// Keep this region compatible with the Space Engineers script compiler:
-// - hard script size limit is about 100k characters
-// - custom compiler / whitelist checks apply
-// - stay within C# 7.3 features
-// - using a non-whitelisted type can fail in-game even if local build passes
-// Heavy work can be split over time via Program() + Runtime.UpdateFrequency if one-shot scanning becomes too large.
-// Script-size tricks like obfuscation are possible later, but not needed while the script is still small.
-
-/*
+﻿/*
 MArmOS arm analyzer for Space Engineers programmable block.
 
 Usage:
 1. Paste this script into a programmable block.
 2. Run it with the root mechanical block name as the argument.
 3. Read the generated MArmOS definition from Custom Data.
-
-Example argument:
-R1Z
-
-Notes:
-- Only code between these two markers is intended for the in-game programmable block.
-- This file is the real script source; the local .csproj is only a Visual Studio helper and is not pasted into the game.
-- Comments in this region are included in the final pasted script, so they can also serve as user instructions.
-- Hard script size limit is about 100k characters.
-- Custom compiler / whitelist checks apply.
-- Stay within C# 7.3 features.
-- Using a non-whitelisted type can fail in-game even if local build passes.
-- Heavy work can be split over time via Program() + Runtime.UpdateFrequency if needed.
 */
 
 const string ScriptNewLine = "\r\n";
@@ -48,7 +24,7 @@ void RunAnalyzer(string argument) {
     argument = argument == null ? "" : argument.Trim();
     if (argument.Length == 0) {
         Echo("Usage: run with root joint name");
-        Echo("Example: R1Z");
+        Echo("Example: 'Arm - Base Rotor'");
         return;
     }
 

@@ -11,3 +11,7 @@ Usage:
 6. Profit!
 
 Code is alpha version, and supports only 'simple' arms - no parallel support for now ...
+
+Script code is in src/Script.txt (generated automatically from Program.cs by after build task)
+
+Project in src is there so i can use Visual studdio to compile it ...

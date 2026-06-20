@@ -12,6 +12,7 @@ namespace IngameScript
     internal partial class Program : MyGridProgram
     {
 
+// NOTE: next line is used as marker to automagically  extract script code to Script.txt
 // >>>>>>>>>>>>>
 /*
 MArmOS arm analyzer for Space Engineers programmable block.
@@ -400,5 +401,6 @@ string FormatNumber(double value) {
 }
 
 // >>>>>>>>>>>>>
+// NOTE: end of script marked by previous line
     }
 }

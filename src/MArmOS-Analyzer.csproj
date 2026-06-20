@@ -37,5 +37,48 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
   </ItemGroup>
+  <UsingTask
+    TaskName="ExtractScriptTask"
+    TaskFactory="CodeTaskFactory"
+    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <SourceFile ParameterType="System.String" Required="true" />
+      <OutputFile ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Reference Include="System.Core" />
+      <Using Namespace="System" />
+      <Using Namespace="System.IO" />
+      <Code Type="Fragment" Language="cs"><![CDATA[
+        const string marker = "// >>>>>>>>>>>>>";
+
+        var source = File.ReadAllText(SourceFile);
+        var start = source.IndexOf(marker, StringComparison.Ordinal);
+        if (start < 0)
+        {
+            Log.LogError("Start marker not found in '{0}'.", SourceFile);
+            return false;
+        }
+
+        start += marker.Length;
+
+        var end = source.IndexOf(marker, start, StringComparison.Ordinal);
+        if (end < 0)
+        {
+            Log.LogError("End marker not found in '{0}'.", SourceFile);
+            return false;
+        }
+
+        var content = source.Substring(start, end - start).Trim('\r', '\n');
+        File.WriteAllText(OutputFile, content + Environment.NewLine, new System.Text.UTF8Encoding(true));
+        Log.LogMessage(MessageImportance.High, "Extracted script to '{0}'.", OutputFile);
+      ]]></Code>
+    </Task>
+  </UsingTask>
+  <Target Name="ExtractScriptAfterBuild" AfterTargets="Build">
+    <ExtractScriptTask
+      SourceFile="$(MSBuildProjectDirectory)\Program.cs"
+      OutputFile="$(MSBuildProjectDirectory)\Script.txt" />
+  </Target>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
