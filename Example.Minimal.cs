@@ -1,0 +1,16 @@
+new Rotor("R1Z", "Z");
+new SolidLG(0, 1, 1);
+new Rotor("R2Y", "Y");
+new Piston("P1Z", "Z");
+new Piston("P2Z", "Z");
+new SolidLG(0, -2, 6);
+new Rotor("R3-Y", "-Y");
+new Piston("P3X", "X");
+new Piston("P4X", "X");
+new SolidLG(5, -1);
+new Rotor("R4X", "X", 1);
+new SolidLG(1, 1);
+new Rotor("R5Y", "Y", 1);
+new SolidLG(0, 1, -1);
+new Rotor("R6-Z", "-Z", 1);
+new SolidLG(0, 0, -1);
